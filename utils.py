@@ -12,9 +12,14 @@ UTILS
 import pandas as pd
 import numpy as np
 from fuzzywuzzy import process
+from sklearn.impute import SimpleImputer
+import pickle
 
 
-movies = pd.read_csv('data/movies_clusters_ratings.csv', index_col='movieid')  
+movies = pd.read_csv('data/movies_clusters_ratings.csv')
+ratings = pd.read_csv("data/ratings_clean.csv")
+user_item_matrix = pd.read_csv("data/my_user_item_matrix.csv", index_col=0)
+model = pickle.load(open("nmf_model.sav","rb"))
 
 
 def match_movie_title(input_title, movie_titles):
@@ -29,8 +34,6 @@ def print_movie_titles(movie_titles):
     """
     Prints list of movie titles in cli app
     """    
-    for movie_id in movie_titles:
-        print(f'> {movie_id}')
     pass
 
 
@@ -43,14 +46,54 @@ def create_user_vector(user_rating, movies):
     user_vector = None
     return user_vector
 
-
-def lookup_movieId(movies, movieId):
+def lookup_movieId(movieId):
     """
     Convert output of recommendation to movie title
     """
+    assert isinstance(movieId, int)
     # match movieId to title
-    ...
+    movie_title = list(movies[movies["movieid"] == movieId]["title"])[0]
     return movie_title
+
+def create_user_item_matrix():
+    pass
+
+
+def printt(item):
+    print("=======================================")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print(item)
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("=======================================")
+
+
 
 
 if __name__ == "__main__":
@@ -63,4 +106,17 @@ if __name__ == "__main__":
         "total eclipse": 5,
         "nadja": 3
     }
-    print(create_user_vector(user_rating, movies))
+
+
+    #print(create_user_vector(user_rating, movies))
+    print("====================")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print("")
+    print(user_item_matrix)
